@@ -1,0 +1,97 @@
+project-name: excalibur-poc
+game: excalibur
+image_format: "directory"
+
+# Define generation of Train Valid Test datasets
+config:
+  output_h: 1024
+  output_w: 1024
+  output_tf_shards: 1
+  n_images_per_area: 1
+  n_images_per_background: 2
+  augment: False
+  ext_valid:
+    - jpg
+    - jpeg
+    - png
+  output_dir: "data/generator/output/test"
+  output_tf_dir: "data/generator/output_tf/test"
+  output_tf_prefix: "test"
+  seed: 201365
+
+# plot_areas: top left (x1, x2) and bottom right (x2, y2)
+background:
+  background_dir: "data/generator/transform"
+  images:
+
+    - filename: "car-wrap-template-001"
+      type: "dir"
+      path: "data/generator/transform/car-wrap-template-001"
+      plot_areas:
+        - top_left: [145, 220]
+          bottom_right: [480, 675]
+          n_images_per_area: 1
+          name: "top-hood"
+        - top_left: [845, 245]
+          bottom_right: [1345, 480]
+          n_images_per_area: 1
+          name: "side-right"
+        - top_left: [910, 820]
+          bottom_right: [1410, 1070]
+          n_images_per_area: 1
+          name: "side-left"
+
+    - filename: "car-wrap-template-002"
+      type: "dir"
+      path: "data/generator/transform/car-wrap-template-002"
+      plot_areas:
+        - top_left: [690, 232]
+          bottom_right: [897, 612]
+          n_images_per_area: 1
+          name: "top-hood"
+        - top_left: [38, 20]
+          bottom_right: [350, 260]
+          n_images_per_area: 1
+          name: "side-right"
+        - top_left: [290, 340]
+          bottom_right: [610, 570]
+          n_images_per_area: 1
+          name: "side-left"
+
+    - filename: "car-wrap-template-003"
+      type: "dir"
+      path: "data/generator/transform/car-wrap-template-003"
+      plot_areas:
+        - top_left: [48, 465]
+          bottom_right: [908, 803]
+          n_images_per_area: 1
+          name: "top-hood"
+        - top_left: [270, 110]
+          bottom_right: [662, 264]
+          n_images_per_area: 1
+          name: "side-left"
+
+foreground:
+  foreground_dir: "data/generator/transform"
+  images:
+
+    - filename: "ss"
+      type: "dir"
+      path: "data/generator/transform/ss"
+      class: "ss"
+      multilabel:
+        - unsafe
+
+    - filename: "swastika"
+      type: "dir"
+      path: "data/generator/transform/swastika"
+      class: "swastika"
+      multilabel:
+        - unsafe
+
+    - filename: "anime_character"
+      type: "dir"
+      path: "data/danbooru/rsync_download/original"
+      class: "anime_character"
+      multilabel:
+        - unsafe

@@ -1,0 +1,88 @@
+project-name: excalibur-poc
+game: excalibur
+image_format: "path"
+
+config:
+  n_per_image: 64
+  clear_output_dir: True
+  output_dir: "data/generator/transform"
+  ext_valid:
+    - jpg
+    - jpeg
+    - png
+
+# plot_areas: top left (x1, y1) and bottom right (x2, y2)
+background:
+  background_dir: "data/generator/background"
+  images:
+    - filename: "car-wrap-template-001.png"
+      path: "data/generator/background/car-wrap-template-001.png"
+      plot_areas:
+        - top_left: [145, 220]
+          bottom_right: [480, 675]
+          n_images_per_area: 2
+          name: "top-hood"
+        - top_left: [845, 245]
+          bottom_right: [1345, 480]
+          n_images_per_area: 1
+          name: "side-right"
+        - top_left: [910, 820]
+          bottom_right: [1410, 1070]
+          n_images_per_area: 1
+          name: "side-left"
+
+    - filename: "car-wrap-template-002.png"
+      path: "data/generator/background/car-wrap-template-002.png"
+      plot_areas:
+        - top_left: [690, 232]
+          bottom_right: [897, 612]
+          n_images_per_area: 2
+          name: "top-hood"
+        - top_left: [38, 20]
+          bottom_right: [350, 260]
+          n_images_per_area: 1
+          name: "side-right"
+        - top_left: [290, 340]
+          bottom_right: [610, 570]
+          n_images_per_area: 1
+          name: "side-left"
+
+    - filename: "car-wrap-template-003.jpg"
+      path: "data/generator/background/car-wrap-template-003.jpg"
+      plot_areas:
+        - top_left: [48, 465]
+          bottom_right: [908, 803]
+          n_images_per_area: 2
+          name: "top-hood"
+        - top_left: [270, 110]
+          bottom_right: [662, 264]
+          n_images_per_area: 1
+          name: "side-left"
+
+# Overlay image
+foreground:
+  foreground_dir: "data/generator/foreground"
+  images:
+    - filename: "swastika-002.png"
+      path: "data/generator/foreground/swastika-002.png"
+      class: "swastika"
+      multilabel:
+        - unsafe
+
+    - filename: "swastika-003.png"
+      path: "data/generator/foreground/swastika-003.png"
+      class: "swastika"
+      multilabel:
+        - unsafe
+
+    - filename: "ss-001.png"
+      path: "data/generator/foreground/ss-001.png"
+      class: "ss"
+      multilabel:
+        - unsafe
+
+    - filename: "ss-002.png"
+      path: "data/generator/foreground/ss-002.png"
+      class: "ss"
+      multilabel:
+        - unsafe

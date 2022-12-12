@@ -1,0 +1,76 @@
+project-name: excalibur-poc
+game: excalibur
+image_format: "directory"
+
+config:
+  output_coco_dir: "data/generator/coco"
+
+output:
+  output_dir: "data/generator/output"
+  output_tf_dir: "data/generator/output_tf"
+  output_coco_dir: "data/generator/output_coco"
+  output_tf_prefix: "default"
+
+# plot_areas: top left (x1, x2) and bottom right (x2, y2)
+background:
+  background_dir: "data/generator/transform"
+  images:
+    - filename: "car_side_left_vw_golf"
+      type: "dir"
+      path: "data/generator/transform/car_side_left_vw_golf"
+      plot_areas:
+        - top_left: [400, 425]
+          bottom_right: [950, 600]
+    - filename: "car_side_right_fiat_tipo"
+      path: "data/generator/transform/car_side_right_fiat_tipo"
+      plot_areas:
+        - top_left: [500, 300]
+          bottom_right: [1300, 550]
+    - filename: "car_front_right_ford_mustang.jpg"
+      path: "data/generator/transform/car_front_right_ford_mustang"
+      plot_areas:
+        - top_left: [400, 150]
+          bottom_right: [650, 250]
+    - filename: "car_side_right_nfs_heat_001.jpg"
+      path: "data/generator/transform/car_side_right_nfs_heat_001"
+      plot_areas:
+        - top_left: [500, 200]
+          bottom_right: [900, 400]
+
+foreground:
+  foreground_dir: "data/generator/transform"
+  images:
+#    - filename: "kirby"
+#      type: "dir"
+#      path: "data/generator/transform/kirby"
+#      class: "kirby"
+#      multilabel:
+#        - safe
+#
+#    - filename: "pikachu"
+#      type: "dir"
+#      path: "data/generator/transform/pikachu"
+#      class: "pikachu"
+#      multilabel:
+#        - safe
+
+    - filename: "ss"
+      type: "dir"
+      path: "data/generator/transform/ss"
+      class: "ss"
+      multilabel:
+        - unsafe
+
+    - filename: "swastika"
+      type: "dir"
+      path: "data/generator/transform/swastika"
+      class: "swastika"
+      multilabel:
+        - unsafe
+
+    - filename: "anime_character"
+      type: "dir"
+      path: "data/danbooru/rsync_download/original"
+      class: "anime_character"
+      multilabel:
+        - unsafe

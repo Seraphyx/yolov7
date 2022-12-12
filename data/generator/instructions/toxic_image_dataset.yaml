@@ -1,0 +1,18 @@
+project-name: excalibur-dev
+game: excalibur
+image_format: "folder"
+
+config:
+  output_coco_dir: "data/generator/coco"
+  ignore: True
+
+background:
+  background_dir: "data/generator/background"
+foreground:
+  foreground_dir: "data/generator/assets"
+
+output:
+  output_dir: "data/generator/output"
+  output_tf_dir: "data/generator/output_tf"
+  output_coco_dir: "data/generator/output_coco"
+  output_tf_prefix: "default"

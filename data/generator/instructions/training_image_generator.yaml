@@ -1,0 +1,106 @@
+project-name: excalibur-poc
+game: excalibur
+image_format: "path"
+
+config:
+  output_coco_dir: "data/generator/coco"
+
+output:
+  output_dir: "data/generator/output"
+  output_tf_dir: "data/generator/output_tf"
+  output_coco_dir: "data/generator/output_coco"
+  output_tf_prefix: "default"
+
+# plot_areas: top left (x1, x2) and bottom right (x2, y2)
+background:
+  background_dir: "data/generator/background"
+  images:
+    - filename: "car_side_left_vw_golf.jpg"
+      path: "data/generator/background/car_side_left_vw_golf.jpg"
+      plot_areas:
+        - top_left: [400, 425]
+          bottom_right: [950, 600]
+    - filename: "car_side_right_fiat_tipo.png"
+      path: "data/generator/background/car_side_right_fiat_tipo.png"
+      plot_areas:
+        - top_left: [500, 300]
+          bottom_right: [1300, 550]
+    - filename: "car_front_right_ford_mustang.jpg"
+      path: "data/generator/background/car_front_right_ford_mustang.jpg"
+      plot_areas:
+        - top_left: [400, 150]
+          bottom_right: [650, 250]
+    - filename: "car_side_right_nfs_heat_001.jpg"
+      path: "data/generator/background/car_side_right_nfs_heat_001.jpg"
+      plot_areas:
+        - top_left: [500, 200]
+          bottom_right: [900, 400]
+
+foreground:
+  foreground_dir: "data/generator/foreground"
+  images:
+    - filename: "pikachu.png"
+      path: "data/generator/foreground/pikachu.png"
+      class: "pikachu"
+      multilabel:
+        - safe
+
+    - filename: "pikachu-001.png"
+      path: "data/generator/foreground/pikachu-001.png"
+      class: "pikachu"
+      multilabel:
+        - safe
+
+    - filename: "pikachu-002.png"
+      path: "data/generator/foreground/pikachu-002.png"
+      class: "pikachu"
+      multilabel:
+        - safe
+
+    - filename: "kirby.png"
+      path: "data/generator/foreground/kirby.png"
+      class: "kirby"
+      multilabel:
+        - safe
+
+    - filename: "kirby-001.png"
+      path: "data/generator/foreground/kirby-001.png"
+      class: "kirby"
+      multilabel:
+        - safe
+
+    - filename: "kirby-002.png"
+      path: "data/generator/foreground/kirby-002.png"
+      class: "kirby"
+      multilabel:
+        - safe
+
+    - filename: "swastika-001.png"
+      path: "data/generator/foreground/swastika-001.png"
+      class: "swastika"
+      multilabel:
+        - unsafe
+
+    - filename: "swastika-002.png"
+      path: "data/generator/foreground/swastika-002.png"
+      class: "swastika"
+      multilabel:
+        - unsafe
+
+    - filename: "swastika-003.png"
+      path: "data/generator/foreground/swastika-003.png"
+      class: "swastika"
+      multilabel:
+        - unsafe
+
+    - filename: "ss-001.png"
+      path: "data/generator/foreground/ss-001.png"
+      class: "ss"
+      multilabel:
+        - unsafe
+
+    - filename: "ss-002.png"
+      path: "data/generator/foreground/ss-002.png"
+      class: "ss"
+      multilabel:
+        - unsafe
