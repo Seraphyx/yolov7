@@ -1,0 +1,46 @@
+name: yolov7
+channels:
+  - conda-forge
+  - defaults
+  - anaconda
+  - pytorch
+  - nvidia
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - jupyterlab
+  - ipykernel
+  - tqdm
+  - ipywidgets
+  - jupyterlab_widgets
+  - matplotlib
+  - seaborn
+  - PyYAML
+  - imgaug
+  - pip:
+      - opencv-python
+      - PyYAML
+      - Pillow
+      - boto3
+      - python-dotenv
+      - mlflow
+      - requests
+      - protobuf
+      - tensorboard
+      - psutil
+      - thop
+      - --extra-index-url https://download.pytorch.org/whl/cu113
+      - torch==1.11.0+cu113
+      - torchvision==0.12.0+cu113
+      - tensorflow
+      - contextlib2
+      - coremltools
+      - onnx
+      - onnx-simplifier
+      - onnxruntime
+variables:
+  PROJECT_ID: toxic-image-detection
+  PROJECT_GAME: TEST

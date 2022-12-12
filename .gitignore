@@ -34,7 +34,10 @@ data/images/*
 !data/images/zidane.jpg
 !data/images/bus.jpg
 !data/*.sh
-
+!data/generator/instructions
+!data/generator/background
+!data/generator/assets
+!runs/train/yolov7/weights/*onnx
 results*.csv
 
 # Datasets -------------------------------------------------------------------------------------------------------------

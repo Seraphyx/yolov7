@@ -1,5 +1,6 @@
 # Official YOLOv7
 
+
 Implementation of paper - [YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors](https://arxiv.org/abs/2207.02696)
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/yolov7-trainable-bag-of-freebies-sets-new/real-time-object-detection-on-coco)](https://paperswithcode.com/sota/real-time-object-detection-on-coco?p=yolov7-trainable-bag-of-freebies-sets-new)
@@ -277,3 +278,63 @@ Yolov7-semantic & YOLOv7-panoptic & YOLOv7-caption
 * [https://github.com/TexasInstruments/edgeai-yolov5/tree/yolo-pose](https://github.com/TexasInstruments/edgeai-yolov5/tree/yolo-pose)
 
 </details>
+
+
+# Local Setup
+
+Creating the environment:
+```bash
+conda env create -f environment.yaml
+```
+
+Updating the environment:
+```bash
+# Within env
+conda env update --file environment.yaml --prune
+
+# Outside env
+conda env update --name yolov7 --file environment.yaml --prune
+```
+
+Adding Kernel:
+```bash
+python -m ipykernel install --user --name yolov7 --display-name "Python (yolov7)"
+```
+
+# Custom Dataset
+## Make Dataset
+Make a dataset in
+```bash
+python scripts/image_overlay_generator.py --output_coco_dir="data/generator/coco-train" --clear_output_dir --coco_format --n_images_per_background=64 --ext_valid=jpg --output_h=640 --output_w=640
+python scripts/image_overlay_generator.py --output_coco_dir="data/generator/coco-valid" --clear_output_dir --coco_format --n_images_per_background=4 --ext_valid=jpg --output_h=640 --output_w=640
+python scripts/image_overlay_generator.py --output_coco_dir="data/generator/coco-test" --clear_output_dir --coco_format --n_images_per_background=4 --ext_valid=jpg --output_h=640 --output_w=640
+```
+
+```bash
+python scripts/image_overlay_generator.py --output_coco_dir="data/generator/coco-train" --instruction=data/generator/instructions/toxic_image_dataset.yaml --clear_output_dir --coco_format --n_images_per_background=64 --n_images_per_area=1 --full_area --ext_valid=jpg --output_h=640 --output_w=640
+python scripts/image_overlay_generator.py --output_coco_dir="data/generator/coco-valid" --instruction=data/generator/instructions/toxic_image_dataset.yaml --clear_output_dir --coco_format --n_images_per_background=4 --n_images_per_area=1 --full_area --ext_valid=jpg --output_h=640 --output_w=640
+python scripts/image_overlay_generator.py --output_coco_dir="data/generator/coco-test" --instruction=data/generator/instructions/toxic_image_dataset.yaml --clear_output_dir --coco_format --n_images_per_background=4 --n_images_per_area=1 --full_area --ext_valid=jpg --output_h=640 --output_w=640
+```
+
+
+
+## Train
+
+```bash
+# 6 sec/epoch
+python train.py --device 0 --batch-size 16 --epochs 300 --data "data/generator/coco-train/instructions/custom_instructions.yaml" --img 640 640 --cfg cfg/training/yolov7.yaml --name yolov7 --hyp data/hyp.scratch.p5.yaml
+
+# 11 sec/epoch
+python train_aux.py --device 0 --batch-size 8 --epochs 300 --data "data/generator/coco-train/instructions/custom_instructions.yaml" --img 640 640 --cfg cfg/training/yolov7-w6.yaml --name yolov7-w6 --hyp data/hyp.scratch.p6.yaml
+
+# 21 sec/epoch
+python train_aux.py --device 0 --batch-size 8 --epochs 100 --data "data/generator/coco-train/instructions/custom_instructions.yaml" --img 640 640 --cfg cfg/training/yolov7-e6e.yaml --name yolov7-e6e --hyp data/hyp.scratch.p6.yaml
+```
+
+## ONNX
+```bash
+python export.py --weights runs/train/yolov7/weights/best.pt --grid --end2end --simplify --topk-all 100 --iou-thres 0.65 --conf-thres 0.35 --img-size 640 640 --max-wh 640
+
+python export.py --weights runs/train/yolov7-e6e/weights/best.pt --grid --end2end --simplify --topk-all 100 --iou-thres 0.65 --conf-thres 0.35 --img-size 640 640 --max-wh 640
+python export.py --weights runs/train/yolov7-e6e/weights/last.pt --grid --end2end --simplify --topk-all 100 --iou-thres 0.65 --conf-thres 0.35 --img-size 640 640 --max-wh 640
+```
